@@ -5,11 +5,16 @@
     </h4>
 
     <p>
-      <span class='pending-details'>Week starting:</span> <%= recent_audit_item.start_date %>
+      <span class='pending-details'>Week starting:</span> <%= recent_audit_item.start_date.strftime("%B %-d, %Y") %>
     </p>
 
     <p>
-      <span class='pending-details'>Confirmed at:</span> <%= recent_audit_item.end_date || status_label('pending') %>
+      <span class='pending-details'>Confirmed at:</span>
+      <% if recent_audit_item.end_date != nil %>
+        <%= recent_audit_item.end_date.strftime("%B %-d, %Y") %>
+      <% else %>
+        <%= status_label('pending') %>
+      <% end %>
     </p>
 
     <p>
@@ -17,3 +22,4 @@
     </p>
   </div>
 <% end %>
+
